@@ -11,7 +11,7 @@ void main()
         File("input.txt")
         .byLine(KeepTerminator.no, newline)
         .map!(pw=>pw.split(": "))
-        .map!(pw=>
+        .map!((pw)
             {
                 auto password = pw[1];
                 auto rulePart = pw[0].split(" ");
@@ -27,7 +27,6 @@ void main()
                     matchCount == 1);
             }
         )//[("1-2 a", "abc", 1)]
-        .map!(x=>x()) // Can't figure out how to disambiguate the lambda above :(
         .count!((x, y) => x.matching == y)(true)
             ;
 
